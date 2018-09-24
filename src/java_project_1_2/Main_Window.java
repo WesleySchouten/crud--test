@@ -580,7 +580,7 @@ public void ShowItem(int index)
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
-            }
+            }//test
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Main_Window.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
