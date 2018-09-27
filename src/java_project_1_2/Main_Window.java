@@ -136,9 +136,9 @@ public void Show_Products_in_Jtable() {
  
  Object[] row = new Object[3];
  for (int i = 0; i < list.size(); i++) {
-  row[0] = list.get(i).getId();
-  row[1] = list.get(i).getName();
-  row[2] = list.get(i).getPrice();
+  
+  row[0] = list.get(i).getName();
+ 
 
   model.addRow(row);
 
@@ -185,10 +185,8 @@ public void clearJtable()
         txt_Id = new javax.swing.JTextField();
         txt_price = new javax.swing.JTextField();
         txt_Name = new javax.swing.JTextField();
-        lbl_image = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTable_Products = new javax.swing.JTable();
-        Btn_Choose_Image = new javax.swing.JButton();
         btn_Insert = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -199,6 +197,9 @@ public void clearJtable()
         conlabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         filterTxt = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txt_price1 = new javax.swing.JTextField();
+        txt_price2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -208,22 +209,20 @@ public void clearJtable()
         jLabel1.setText("ID:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Name:");
+        jLabel2.setText("First Name:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Price:");
+        jLabel3.setText("Last Name:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Image:");
-
-        lbl_image.setOpaque(true);
+        jLabel5.setText("Woonplaats:");
 
         JTable_Products.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Name", "Price"
+                "Name"
             }
         ));
         JTable_Products.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -232,13 +231,6 @@ public void clearJtable()
             }
         });
         jScrollPane1.setViewportView(JTable_Products);
-
-        Btn_Choose_Image.setText("Choose Image");
-        Btn_Choose_Image.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_Choose_ImageActionPerformed(evt);
-            }
-        });
 
         btn_Insert.setText("Insert");
         btn_Insert.addActionListener(new java.awt.event.ActionListener() {
@@ -304,6 +296,9 @@ public void clearJtable()
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Addres:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -316,14 +311,15 @@ public void clearJtable()
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Btn_Choose_Image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_Id)
-                            .addComponent(lbl_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_price)
-                            .addComponent(txt_Name)))
+                            .addComponent(txt_Name)
+                            .addComponent(txt_price1)
+                            .addComponent(txt_price2)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 109, Short.MAX_VALUE)
                         .addComponent(btn_Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -368,7 +364,7 @@ public void clearJtable()
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(filterTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -380,15 +376,17 @@ public void clearJtable()
                             .addComponent(txt_price, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(106, 106, 106)
-                                .addComponent(jLabel5))
+                                .addGap(320, 320, 320)
+                                .addComponent(jButton1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(lbl_image, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Btn_Choose_Image, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txt_price1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(txt_price2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(conlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -419,26 +417,6 @@ public void clearJtable()
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void Btn_Choose_ImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_Choose_ImageActionPerformed
-        JFileChooser file = new JFileChooser();
-        file.setCurrentDirectory(new File(System.getProperty("user.home")));
-        
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(/*"*.image",*/ "jpg", "png");
-        file.addChoosableFileFilter(filter);
-        int result = file.showSaveDialog(null);
-        if(result == JFileChooser.APPROVE_OPTION) 
-        {
-            File selectedFile = file.getSelectedFile();
-            String path = selectedFile.getAbsolutePath();
-           // lbl_image.setIcon(ResizeImage(path, null));
-            //ImgPath = path;
-        }
-        else {
-            System.out.println("No File Selected");
-        }
-       
-    }//GEN-LAST:event_Btn_Choose_ImageActionPerformed
 
     private void btn_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InsertActionPerformed
       if(checkInputs())
@@ -589,9 +567,10 @@ public void clearJtable()
         JOptionPane.showMessageDialog(null, startDir);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //Search/Filter
     private void filterTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTxtKeyReleased
        DefaultTableModel table = (DefaultTableModel)JTable_Products.getModel();
-       String search = filterTxt.getText().toLowerCase();
+       String search = filterTxt.getText();
        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
        JTable_Products.setRowSorter(tr);
        tr.setRowFilter(RowFilter.regexFilter(search));
@@ -634,7 +613,6 @@ public void clearJtable()
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Choose_Image;
     private javax.swing.JButton Btn_First;
     private javax.swing.JButton Btn_Last;
     private javax.swing.JButton Btn_Next;
@@ -650,11 +628,13 @@ public void clearJtable()
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lbl_image;
     private javax.swing.JTextField txt_Id;
     private javax.swing.JTextField txt_Name;
     private javax.swing.JTextField txt_price;
+    private javax.swing.JTextField txt_price1;
+    private javax.swing.JTextField txt_price2;
     // End of variables declaration//GEN-END:variables
 }
