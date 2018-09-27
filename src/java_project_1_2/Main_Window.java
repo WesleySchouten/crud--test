@@ -39,13 +39,10 @@ public class Main_Window extends javax.swing.JFrame {
         initComponents();
         getConnection();
         Show_Products_in_Jtable();
-        
-        
     }
     
     String ImgPath;
     int pos = 0;
-    
     public Connection getConnection() {
         Connection con = null;
         
@@ -79,12 +76,10 @@ public class Main_Window extends javax.swing.JFrame {
                  return false;
             }
         }
-       
     }
-    
     //resize image
     
-    public ImageIcon ResizeImage(String imagePath, byte[] pic) {
+    /*public ImageIcon ResizeImage(String imagePath, byte[] pic) {
         ImageIcon myImage = null;
         if (imagePath != null) {
             myImage = new ImageIcon(imagePath);
@@ -96,10 +91,10 @@ public class Main_Window extends javax.swing.JFrame {
         Image img2 = img.getScaledInstance(lbl_image.getWidth(), lbl_image.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(img2);
         return image;
-    }
+    }*/
     
     //Display Data in Jtable:
-// 1 - Fill ArrayList With The Data
+    // 1 - Fill ArrayList With The Data
 
   public ArrayList<Product> getProductList()
     {
@@ -118,7 +113,7 @@ public class Main_Window extends javax.swing.JFrame {
             
             while(rs.next())
             {
-                product = new Product(rs.getInt("id"),rs.getString("name"),Float.parseFloat(rs.getString("price")),rs.getBytes("image"));
+                product = new Product(rs.getInt("id"),rs.getString("name"),Float.parseFloat(rs.getString("price")));
                 productList.add(product);
             }
             
@@ -154,7 +149,14 @@ public void ShowItem(int index)
             txt_Name.setText(getProductList().get(index).getName());
             txt_price.setText(Float.toString(getProductList().get(index).getPrice()));
             
-            lbl_image.setIcon(ResizeImage(null,getProductList().get(index).getImage()));
+           // lbl_image.setIcon(ResizeImage(null,getProductList().get(index).getImage()));
+}
+//
+// Clears Jtable Before Loading in a nwe one to make it look clean 
+//
+public void clearJtable()
+{
+    JTable_Products.setModel(new DefaultTableModel(null, new String[]{"id","name","price"}));
 }
     
     /**
@@ -399,15 +401,15 @@ public void ShowItem(int index)
         JFileChooser file = new JFileChooser();
         file.setCurrentDirectory(new File(System.getProperty("user.home")));
         
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.image", "jpg", "png");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(/*"*.image",*/ "jpg", "png");
         file.addChoosableFileFilter(filter);
         int result = file.showSaveDialog(null);
         if(result == JFileChooser.APPROVE_OPTION) 
         {
             File selectedFile = file.getSelectedFile();
             String path = selectedFile.getAbsolutePath();
-            lbl_image.setIcon(ResizeImage(path, null));
-            ImgPath = path;
+           // lbl_image.setIcon(ResizeImage(path, null));
+            //ImgPath = path;
         }
         else {
             System.out.println("No File Selected");
@@ -416,23 +418,19 @@ public void ShowItem(int index)
     }//GEN-LAST:event_Btn_Choose_ImageActionPerformed
 
     private void btn_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InsertActionPerformed
-      if(checkInputs() && ImgPath != null)
+      if(checkInputs())
         {
             try{
             Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO products(name,price,image)"
-                    + "values(?,?,?)"); 
+            PreparedStatement ps = con.prepareStatement("INSERT INTO products(name,price)"
+                    + "values(?,?)"); 
             ps.setString(1, txt_Name.getText());
             ps.setString(2, txt_price.getText());
-         
-            
-            InputStream img = new FileInputStream(new File(ImgPath));
-            
-            ps.setBlob(3, img);
+            //InputStream img = new FileInputStream(new File(ImgPath));
+            //ps.setBlob(3, img);
             ps.executeUpdate();
+              clearJtable();
             Show_Products_in_Jtable();
-            
-            
              JOptionPane.showMessageDialog(null, "Data Inserted");
             }catch (Exception ex) {
                  JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -446,7 +444,7 @@ public void ShowItem(int index)
     }//GEN-LAST:event_btn_InsertActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (checkInputs() && txt_Id.getText() != null)
+        if (checkInputs())
         {
             String UpdateQuery = null;
             PreparedStatement ps = null;
@@ -465,14 +463,15 @@ public void ShowItem(int index)
                     ps.setInt(3, Integer.parseInt(txt_Id.getText()));
                     
                     ps.executeUpdate();
-                    
+                      clearJtable();
+                    Show_Products_in_Jtable();
                 } catch (SQLException ex) {
                     Logger.getLogger(Main_Window.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             }
             // update With Image
-            else {
+            /*else {
                 try{
                  InputStream img = new FileInputStream(new File(ImgPath));
                 
@@ -494,7 +493,7 @@ public void ShowItem(int index)
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                     
                 }
-                }
+                }*/
                 
         }else {
             JOptionPane.showMessageDialog(null, "One or More Fields Are Empty Or Wrong");
@@ -512,6 +511,8 @@ public void ShowItem(int index)
                 ps.setInt(1, id);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Product Deleted");
+                clearJtable();
+                Show_Products_in_Jtable();
             } catch (SQLException ex) {
                 Logger.getLogger(Main_Window.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Product not Deleted");

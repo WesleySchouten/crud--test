@@ -7,14 +7,14 @@ public class Product {
     private String name;
     private float price;
     private String addDate;
-    private byte[] picture;
+   
     
-    public Product(int pid, String pname, float pprice, byte[] pimg){
+    public Product(int pid, String pname, float pprice){
        this.id = pid;
        this.name = pname;
        this.price = pprice;
        
-       this.picture = pimg;
+       
     }
 
    
@@ -34,8 +34,6 @@ public class Product {
     }
     
     
-    public byte[] getImage(){
-        return picture;
-    }
+   
     
 }
