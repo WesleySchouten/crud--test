@@ -64,14 +64,15 @@ public class Main_Window extends javax.swing.JFrame {
     public boolean checkInputs() 
     {
         if(
-                txt_Name.getText() == null
-               || txt_price.getText() == null 
+                txtFirstNameFieldWsch.getText() == null
+               && txtWoonplaatsFieldWsch.getText() == null
              
+                
                 
                 ) { return false;
         } else{
             try{
-                Float.parseFloat(txt_price.getText());
+                Float.parseFloat(txtLastNameFieldWsch.getText());
                 return true;
             }catch(Exception ex)
             {
@@ -115,7 +116,7 @@ public class Main_Window extends javax.swing.JFrame {
             
             while(rs.next())
             {
-                product = new Product(rs.getInt("id"),rs.getString("name"),Float.parseFloat(rs.getString("price")));
+                product = new Product(rs.getInt("id"),rs.getString("firstName"),rs.getString("lastName"),rs.getString("woonPlaats"), rs.getString("Addres"), rs.getInt("telefoonNummer"));
                 productList.add(product);
             }
             
@@ -137,7 +138,8 @@ public void Show_Products_in_Jtable() {
  Object[] row = new Object[3];
  for (int i = 0; i < list.size(); i++) {
   
-  row[0] = list.get(i).getName();
+  row[0] = list.get(i).getfirstName() + "  "  + list.get(i).getlastName();
+  
  
 
   model.addRow(row);
@@ -147,25 +149,21 @@ public void Show_Products_in_Jtable() {
 
 public void ShowItem(int index)
 {
-            txt_Id.setText(Integer.toString(getProductList().get(index).getId()));
-            txt_Name.setText(getProductList().get(index).getName());
-            txt_price.setText(Float.toString(getProductList().get(index).getPrice()));
+            txtIdFieldWsch.setText(Integer.toString(getProductList().get(index).getId()));
+            txtFirstNameFieldWsch.setText(getProductList().get(index).getfirstName());
+            txtLastNameFieldWsch.setText(getProductList().get(index).getlastName());
+            txtWoonplaatsFieldWsch.setText(getProductList().get(index).getwoonPlaats());
+            txtAddresFieldWsch.setText(getProductList().get(index).getaddres());
+            txttelefoonNummerFieldWsch.setText(Integer.toString(getProductList().get(index).gettelefoonNummer()));
             
            // lbl_image.setIcon(ResizeImage(null,getProductList().get(index).getImage()));
-}
-//
-//Filter function Jtable
-//
-private void filter(String query)
-{
-    
 }
 //
 // Clears Jtable Before Loading in a nwe one to make it look clean 
 //
 public void clearJtable()
 {
-    JTable_Products.setModel(new DefaultTableModel(null, new String[]{"id","name","price"}));
+    JTable_Products.setModel(new DefaultTableModel(null, new String[]{"name"}));
 }
     
     /**
@@ -182,9 +180,9 @@ public void clearJtable()
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txt_Id = new javax.swing.JTextField();
-        txt_price = new javax.swing.JTextField();
-        txt_Name = new javax.swing.JTextField();
+        txtIdFieldWsch = new javax.swing.JTextField();
+        txtLastNameFieldWsch = new javax.swing.JTextField();
+        txtFirstNameFieldWsch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTable_Products = new javax.swing.JTable();
         btn_Insert = new javax.swing.JButton();
@@ -198,8 +196,10 @@ public void clearJtable()
         jButton1 = new javax.swing.JButton();
         filterTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txt_price1 = new javax.swing.JTextField();
-        txt_price2 = new javax.swing.JTextField();
+        txtWoonplaatsFieldWsch = new javax.swing.JTextField();
+        txtAddresFieldWsch = new javax.swing.JTextField();
+        txttelefoonNummerFieldWsch = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -299,6 +299,9 @@ public void clearJtable()
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Addres:");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("TelefoonNummer:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -312,14 +315,16 @@ public void clearJtable()
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_Id)
-                            .addComponent(txt_price)
-                            .addComponent(txt_Name)
-                            .addComponent(txt_price1)
-                            .addComponent(txt_price2)))
+                            .addComponent(txtIdFieldWsch)
+                            .addComponent(txtLastNameFieldWsch)
+                            .addComponent(txtFirstNameFieldWsch)
+                            .addComponent(txtWoonplaatsFieldWsch)
+                            .addComponent(txtAddresFieldWsch)
+                            .addComponent(txttelefoonNummerFieldWsch)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 109, Short.MAX_VALUE)
                         .addComponent(btn_Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,7 +361,7 @@ public void clearJtable()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_Id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtIdFieldWsch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jLabel1)
@@ -369,11 +374,11 @@ public void clearJtable()
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txt_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFirstNameFieldWsch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(txt_price, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtLastNameFieldWsch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(320, 320, 320)
@@ -382,11 +387,15 @@ public void clearJtable()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel5)
-                                    .addComponent(txt_price1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtWoonplaatsFieldWsch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
-                                    .addComponent(txt_price2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtAddresFieldWsch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txttelefoonNummerFieldWsch, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(conlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -419,14 +428,21 @@ public void clearJtable()
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InsertActionPerformed
-      if(checkInputs())
+      if(true == true)
         {
             try{
             Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO products(name,price)"
-                    + "values(?,?)"); 
-            ps.setString(1, txt_Name.getText());
-            ps.setString(2, txt_price.getText());
+            PreparedStatement ps = con.prepareStatement("INSERT INTO products(firstName,lastName,woonPlaats,Addres,telefoonNummer)"
+                    + "values(?,?,?,?,?)"); 
+            ps.setString(1, txtFirstNameFieldWsch.getText());
+            ps.setString(2, txtLastNameFieldWsch.getText());
+            ps.setString(3, txtWoonplaatsFieldWsch.getText());
+            ps.setString(4, txtAddresFieldWsch.getText());
+            ps.setString(5, txttelefoonNummerFieldWsch.getText());
+            System.out.println("Name =>" + txtFirstNameFieldWsch.getText());
+            System.out.println("Name =>" + txtLastNameFieldWsch.getText());
+            System.out.println("Name =>" + txtWoonplaatsFieldWsch.getText());
+            System.out.println("Name =>" + txtAddresFieldWsch.getText());
             //InputStream img = new FileInputStream(new File(ImgPath));
             //ps.setBlob(3, img);
             ps.executeUpdate();
@@ -437,7 +453,7 @@ public void clearJtable()
                  JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Fields are empty or you filled in a field incorrectly");
+            JOptionPane.showMessageDialog(null, "Fields are empty or you filled in a field incorrectly Error 1");
         }
       //System.out.println("Name =>" + txt_Name.getText());
        //System.out.println("Price =>" + txt_price.getText());
@@ -445,7 +461,7 @@ public void clearJtable()
     }//GEN-LAST:event_btn_InsertActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (checkInputs())
+        if (true == true)
         {
             String UpdateQuery = null;
             PreparedStatement ps = null;
@@ -455,13 +471,16 @@ public void clearJtable()
                
                 
                 try {
-                     UpdateQuery = "UPDATE products SET name = ?, price = ? WHERE id = ?";
+                     UpdateQuery = "UPDATE products SET firstName = ?, lastName = ?, woonPlaats = ?, Addres = ?, telefoonNummer = ? WHERE id = ?";
                     ps = con.prepareStatement(UpdateQuery);
                     
-                    ps.setString(1, txt_Name.getText());
-                    ps.setString(2, txt_price.getText());
+                    ps.setString(1, txtFirstNameFieldWsch.getText());
+                    ps.setString(2, txtLastNameFieldWsch.getText());
+                    ps.setString(3, txtWoonplaatsFieldWsch.getText());
+                    ps.setString(4, txtAddresFieldWsch.getText());
+                    ps.setString(5, txttelefoonNummerFieldWsch.getText());
                     
-                    ps.setInt(3, Integer.parseInt(txt_Id.getText()));
+                    ps.setInt(6, Integer.parseInt(txtIdFieldWsch.getText()));
                     
                     ps.executeUpdate();
                       clearJtable();
@@ -502,13 +521,13 @@ public void clearJtable()
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(!txt_Id.getText().equals(""))
+        if(!txtIdFieldWsch.getText().equals(""))
         
         {
             try {
                 Connection con = getConnection();
                 PreparedStatement ps = con.prepareStatement("DELETE FROM products WHERE id=?");
-                int id = Integer.parseInt(txt_Id.getText());
+                int id = Integer.parseInt(txtIdFieldWsch.getText());
                 ps.setInt(1, id);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Product Deleted");
@@ -629,12 +648,14 @@ public void clearJtable()
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txt_Id;
-    private javax.swing.JTextField txt_Name;
-    private javax.swing.JTextField txt_price;
-    private javax.swing.JTextField txt_price1;
-    private javax.swing.JTextField txt_price2;
+    private javax.swing.JTextField txtAddresFieldWsch;
+    private javax.swing.JTextField txtFirstNameFieldWsch;
+    private javax.swing.JTextField txtIdFieldWsch;
+    private javax.swing.JTextField txtLastNameFieldWsch;
+    private javax.swing.JTextField txtWoonplaatsFieldWsch;
+    private javax.swing.JTextField txttelefoonNummerFieldWsch;
     // End of variables declaration//GEN-END:variables
 }

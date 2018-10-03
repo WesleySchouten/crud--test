@@ -56,14 +56,16 @@
                               <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txt_Id" max="32767" attributes="0"/>
-                              <Component id="txt_price" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_Name" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_price1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txt_price2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtIdFieldWsch" max="32767" attributes="0"/>
+                              <Component id="txtLastNameFieldWsch" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtFirstNameFieldWsch" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtWoonplaatsFieldWsch" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtAddresFieldWsch" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txttelefoonNummerFieldWsch" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -112,7 +114,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txt_Id" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="txtIdFieldWsch" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -129,12 +131,12 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_Name" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="txtFirstNameFieldWsch" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_price" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="txtLastNameFieldWsch" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -145,12 +147,17 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_price1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="txtWoonplaatsFieldWsch" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txt_price2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="txtAddresFieldWsch" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txttelefoonNummerFieldWsch" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -207,11 +214,11 @@
             <Property name="text" type="java.lang.String" value="Woonplaats:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_Id">
+        <Component class="javax.swing.JTextField" name="txtIdFieldWsch">
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_price">
+        <Component class="javax.swing.JTextField" name="txtLastNameFieldWsch">
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_Name">
+        <Component class="javax.swing.JTextField" name="txtFirstNameFieldWsch">
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -328,9 +335,19 @@
             <Property name="text" type="java.lang.String" value="Addres:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_price1">
+        <Component class="javax.swing.JTextField" name="txtWoonplaatsFieldWsch">
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_price2">
+        <Component class="javax.swing.JTextField" name="txtAddresFieldWsch">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txttelefoonNummerFieldWsch">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="TelefoonNummer:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
